@@ -6,7 +6,7 @@ import MapComponent from './MapComponent';
 const App = () => {
   return (
     <div className="App">
-      <MapComponent />
+      <MapComponent/>
     </div>
   );
 };

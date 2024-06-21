@@ -95,6 +95,7 @@ const MapComponent = () => {
 
     map.addInteraction(draw);
   };
+  let frame;
 
   const animateVessel = (timestamp) => {
     if (!vesselFeature || routeCoords.length === 0) return;
@@ -160,11 +161,10 @@ const MapComponent = () => {
         setSliderValue((distance + (segmentLength * fraction)) / totalLength * 100);
 
         if (isAnimating) {
-          const frame = requestAnimationFrame(animate);
+          frame = requestAnimationFrame(animate);
           setAnimationFrame(frame);
-        } else {
           setElapsedTime(progress);
-        }
+        } 
       }
     };
 
@@ -177,6 +177,7 @@ const MapComponent = () => {
   const handlePlayPause = () => {
     if (isAnimating) {
       setIsAnimating(false);
+
       if (animationFrame) {
         cancelAnimationFrame(animationFrame);
       }
@@ -281,7 +282,7 @@ const MapComponent = () => {
       <div className="controller">
         <button onClick={addInteraction}>Draw Route</button>
         <button onClick={handlePlayPause}>
-          {isAnimating ? 'Pause' : (elapsedTime > 0 ? 'Resume' : 'Play')}
+          {isAnimating ? 'Pause' : 'Play'}
         </button>
         <button onClick={handleReset}>Reset</button>
         <input
